@@ -15,13 +15,23 @@ app.use(express.json());
 
 
 
+
 const id = Math.floor(Math.random() * 1000);
 
 
 
 
-
 ///////////////////////////////Get req, sends notes.html///////////////////////////////
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'))
+});
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////Get req to render saved notes //////////////////////////////////
+
 // const getNotes = () =>
 //   fetch('/api/notes', {
 //     method: 'GET',
@@ -29,11 +39,11 @@ const id = Math.floor(Math.random() * 1000);
 //       'Content-Type': 'application/json',
 //     },
 //   });
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'))
-});
-/////////////////////////////////////////////////////////////////////////////////////////////
 
+app.get('/api/notes', (req, res) =>{
+    res.status(200).json(savedNotes)
+})
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -48,7 +58,6 @@ app.get('/notes', (req, res) => {
 //   });
 
 app.post('/api/notes', (req, res) => {
-    // Log our request to the terminal
     console.log(`${req.method} request received.`);
     // console.log(req.body)
     const { title, text } = req.body
@@ -58,19 +67,19 @@ app.post('/api/notes', (req, res) => {
         text,
         id
     }
-    // res.json(newNote)
-    console.log(newNote)
-
+    
     savedNotes.push(newNote)
-    console.log(savedNotes)
+    // console.log(savedNotes)
 
     const stringNotes = JSON.stringify(savedNotes)
+   
 
     fs.writeFile('./db/db.json', stringNotes, (err) =>
     err ? console.error("There was an error adding a note.") : console.log('Note saved!'))
 
 
-    // res.json(stringNotes);
+    res.json(savedNotes);
+
 });
 /////////////////////////////////////////////////////////////////////////////////////////////
 
