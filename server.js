@@ -15,12 +15,7 @@ app.use(express.json());
 
 
 
-// function addToFile(note) {
-// let storedNote = JSON.stringify(note);
-// console.log(storedNote);
-// fs.appendFile('./db/db.json', storedNote, (err) =>
-//     err ? console.error(err) : console.log('Note saved!')
-// )};
+const id = Math.floor(Math.random() * 1000);
 
 
 
@@ -60,10 +55,11 @@ app.post('/api/notes', (req, res) => {
 
     const newNote = {
         title,
-        text
+        text,
+        id
     }
     // res.json(newNote)
-    // console.log(newNote)
+    console.log(newNote)
 
     savedNotes.push(newNote)
     console.log(savedNotes)
@@ -74,12 +70,7 @@ app.post('/api/notes', (req, res) => {
     err ? console.error("There was an error adding a note.") : console.log('Note saved!'))
 
 
-    res.json(stringNotes);
-
-    // addToFile(newNote)
-
-    
-
+    // res.json(stringNotes);
 });
 /////////////////////////////////////////////////////////////////////////////////////////////
 
