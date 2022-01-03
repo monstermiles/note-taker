@@ -19,7 +19,9 @@ app.use(express.json());
 const id = Math.floor(Math.random() * 1000);
 
 
-
+app.get('/', (req, res) => {
+res.sendFile(path.join(__dirname, 'public.index.html'))
+});
 
 ///////////////////////////////Get req, sends notes.html///////////////////////////////
 app.get('/notes', (req, res) => {
@@ -83,7 +85,58 @@ app.post('/api/notes', (req, res) => {
 });
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////Delete request/////////////////////////////////////////////
+// const deleteNote = (id) =>
+//   fetch(`/api/notes/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
 
+app.delete(`/api/notes/:id`, (req, res) =>{
+    const saveArray = []
+    for (var i = 0; i < savedNotes.length; i++) {
+        if (savedNotes[i].id !== req.params.id) {
+            saveArray.push(savedNotes[i])
+        }
+    }
+    console.log(saveArray)
+    
+    
+    
+    
+    // console.log(req.params.id)
+    // savedNotes.filter(note => console.log(note.id))
+    // const saveArray = savedNotes.filter(note => note.id !== req.params.id)
+    // console.log(saveArray)
+   
+   
+   
+   
+    // savedNotes.forEach(note => {
+    //     console.log(note[])
+    //     // const currentId = note[i].id;
+    //     // if (currentId === req.params.id) {
+    //     //     savedNotes.splice(currentId)
+    //     // }
+    // })
+    // // console.log(savedNotes)
+    // stringNotes = JSON.stringify(savedNotes)
+
+    // // saveArray = savedNotes.filter(note => note.id !== req.params.id)
+    // // console.log(saveArray)
+    // // const stringArray = JSON.stringify(saveArray)
+    
+    // fs.writeFile('./db/db.json', stringNotes , (err) =>
+    // err ? console.error("There was an error deleting a note.") : console.log("Note deleted.")
+    // )
+    
+    res.json('note has been deleted')
+})
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 
 
 app.listen(PORT, () => {
