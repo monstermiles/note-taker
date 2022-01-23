@@ -6,7 +6,8 @@ const savedNotes = require('./db/db.json')
 
 const app = express();
 
-const PORT = 3001;
+// const PORT = 3001;
+const PORT = process.env.PORT
 
 app.use(express.static('public'));
 
