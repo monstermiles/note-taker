@@ -6,6 +6,11 @@ const savedNotes = require('./db/db.json')
 
 const app = express();
 
+
+
+//I don't know if there is a way around this, but I was getting an H10 error trying to run it on Heroku. 
+//After some googling, I tried changing the port to process.env.PORT and now it works on Heroku, but
+//I have to change it back to run it locally.  
 // const PORT = 3001;
 const PORT = process.env.PORT
 
@@ -59,7 +64,7 @@ app.post('/api/notes', (req, res) => {
         text: text,
         id: id
     }
-    console.log("hello")
+
     savedNotes.push(newNote)
     // console.log(savedNotes)
 
@@ -88,8 +93,6 @@ app.post('/api/notes', (req, res) => {
 app.delete(`/api/notes/:id`, (req, res) => {
    
     for (var i = 0; i < savedNotes.length; i++) {
-        console.log("note to delete:", req.params.id)
-        console.log("current note:", savedNotes[i].id)
         if (savedNotes[i].id == req.params.id) {
             savedNotes.splice(i,1)
             console.log(savedNotes)
