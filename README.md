@@ -17,7 +17,8 @@
       This is an app that allow you to record, save, view, and delete notes for any purpose.  It uses HTML, CSS, JavaScript and Node.js, and is deployed with Heroku. 
 
       https://github.com/monstermiles/note-taker
-      
+      https://miles-note-taker.herokuapp.com/
+
 
 
       ## Installation:
