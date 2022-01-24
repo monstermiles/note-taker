@@ -19,8 +19,11 @@
       https://github.com/monstermiles/note-taker
       https://miles-note-taker.herokuapp.com/
 
+      note-taker/img/Screen Shot 2022-01-23 at 6.08.07 PM.png
+      note-taker/img/Screen Shot 2022-01-23 at 6.12.26 PM.png
 
-
+      
+      
       ## Installation:
       Since this app is deployed with Heroku, no installation is necessary. Just load the application by visiting this page :  
 
