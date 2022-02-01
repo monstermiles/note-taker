@@ -12,7 +12,7 @@ const app = express();
 //After some googling, I tried changing the port to process.env.PORT and now it works on Heroku, but
 //I have to change it back to run it locally.  
 // const PORT = 3001;
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001
 
 app.use(express.static('public'));
 
